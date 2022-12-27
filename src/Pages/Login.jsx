@@ -163,14 +163,12 @@ const Login = () => {
           <div className='flex flex-col items-center justify-between xl:flex-row'>
             <div className='w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12'>
               <h2 className='max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none'>
-                The quick, brown fox <br className='hidden md:block' />
-                jumps over a{" "}
-                <span className='text-teal-accent-400'>lazy dog</span>
+                The quick, fast <br className='hidden md:block' />& easy to use{" "}
+                <span className='text-teal-accent-400'>to track your task</span>
               </h2>
               <p className='max-w-xl mb-4 text-base text-gray-400 md:text-lg'>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudan, totam rem aperiam, eaque ipsa
-                quae.
+                Plan, organize, and collaborate on any project with powerful
+                task management that can be customized for every need.
               </p>
             </div>
             <div className='w-full max-w-xl xl:px-8 xl:w-5/12'>
@@ -225,7 +223,13 @@ const Login = () => {
                     </button>
                   </div>
                 </form>
-                <small><button  onClick={resetPass} className="text-white duration-300 transform hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110">Forget password</button></small>
+                <small>
+                  <button
+                    onClick={resetPass}
+                    className='text-white duration-300 transform hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110'>
+                    Forget password
+                  </button>
+                </small>
                 <p className='text-center text-white'>
                   New here{" "}
                   <Link className='text-[#003566] font-bold' to='/signup'>

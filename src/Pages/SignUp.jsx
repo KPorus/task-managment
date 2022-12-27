@@ -60,7 +60,6 @@ const SignUp = () => {
       });
   };
 
-  
   const handleEmailChange = (e) => {
     const email = e.target.value;
 
@@ -94,7 +93,6 @@ const SignUp = () => {
     }
   };
 
-  
   document.title = "Sign Up";
   return (
     <div className='relative'>
@@ -108,17 +106,17 @@ const SignUp = () => {
           <div className='flex flex-col items-center justify-between xl:flex-row'>
             <div className='w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12'>
               <h2 className='max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none'>
-                The quick, brown fox <br className='hidden md:block' />
-                jumps over a{" "}
-                <span className='text-teal-accent-400'>lazy dog</span>
+                The quick, fast <br className='hidden md:block' />& easy to use{" "}
+                <span className='text-teal-accent-400'>to track your task</span>
               </h2>
               <p className='max-w-xl mb-4 text-base text-gray-400 md:text-lg'>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudan, totam rem aperiam, eaque ipsa
-                quae.
+                Plan, organize, and collaborate on any project with powerful
+                task management that can be customized for every need.
               </p>
             </div>
-            <div className='w-full max-w-xl xl:px-8 xl:w-5/12' onSubmit={handleLogin}>
+            <div
+              className='w-full max-w-xl xl:px-8 xl:w-5/12'
+              onSubmit={handleLogin}>
               <div className='bg-gray-900  rounded shadow-2xl p-7 sm:p-10'>
                 <h3 className=' text-white mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl uppercase'>
                   Sign up
@@ -185,7 +183,7 @@ const SignUp = () => {
                     </button>
                   </div>
                 </form>
-                <small className="text-white">
+                <small className='text-white'>
                   {" "}
                   <Link to='/login'>
                     Already have a account!!{" "}
