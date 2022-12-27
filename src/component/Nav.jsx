@@ -61,16 +61,18 @@ const Nav = () => {
             </li>
             <li>
               {user ? (
-                <button className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none' onClick={handleSignOut}>
-                Log Out
-              </button>
+                <button
+                  className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
+                  onClick={handleSignOut}>
+                  Log Out
+                </button>
               ) : (
                 <Link
-                  to='/signUp'
+                  to='/login'
                   className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
-                  aria-label='Sign up'
-                  title='Sign up'>
-                  Sign up
+                  aria-label='Login'
+                  title='Login'>
+                  Login
                 </Link>
               )}
             </li>
@@ -161,13 +163,21 @@ const Nav = () => {
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          to='/signUp'
-                          className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-gray-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
-                          aria-label='Sign up'
-                          title='Sign up'>
-                          Sign up
-                        </Link>
+                        {user ? (
+                          <button
+                            className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
+                            onClick={handleSignOut}>
+                            Log Out
+                          </button>
+                        ) : (
+                          <Link
+                            to='/login'
+                            className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
+                            aria-label='Login'
+                            title='Login'>
+                            Login
+                          </Link>
+                        )}
                       </li>
                     </ul>
                   </nav>
