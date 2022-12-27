@@ -198,7 +198,7 @@ const Login = () => {
                   </div>
                   <div className='mb-1 sm:mb-2'>
                     <label
-                      htmlFor='email'
+                      htmlFor='pass'
                       className='inline-block mb-1 font-medium text-white'>
                       Password
                     </label>
@@ -209,7 +209,7 @@ const Login = () => {
                       required
                       onChange={handlePasswordChange}
                       className='flex-grow w-full h-12 px-4 mb-2 transition duration-200  border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline'
-                      id='email'
+                      id='pass'
                     />
                     {errors.password && (
                       <p className='text-red-600'>{errors.password}</p>

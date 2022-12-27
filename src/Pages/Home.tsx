@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Typewriter } from 'react-simple-typewriter';
+import { FaAngleRight } from "react-icons/fa";
 
 const Home = () => {
     document.title = "Manage your Task";
@@ -35,7 +36,7 @@ const Home = () => {
                         aria-label="Scroll down"
                         className="flex items-center justify-center w-32 h-10 mx-auto text-white duration-300 transform border border-gray-400  hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110"
                     >
-                        Get started
+                        Get started <FaAngleRight className='text-xl'></FaAngleRight>
                     </Link>
                 </div>
             </div>
