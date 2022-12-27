@@ -1,12 +1,16 @@
-import React, { useContext } from "react";
-import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
+import { toast } from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider } from "firebase/auth";
 
-const SignUp = () => {
+const Login = () => {
+  const { login, googleLogin, setLoading, setUser, forgetPassword } =
+    useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+
   const from = location.state?.from?.pathname || "/";
 
   const [userInfo, setUserInfo] = useState({
@@ -20,25 +24,24 @@ const SignUp = () => {
     general: "",
   });
 
-  const { createUser, setLoading } = useContext(AuthContext);
-
-  let handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    let form = e.target;
-    let email = form.email.value;
-    let password = form.password.value;
-    let name = form.name.value;
-    createUser(email, password)
+    const currentUser = {
+      email: userInfo.email,
+    };
+
+    console.log(currentUser);
+
+    login(userInfo.email, userInfo.password)
       .then((result) => {
-        const user = result.user;
+        toast.success("success");
+        let user = result.user;
+        console.log(user);
         setLoading(true);
-        user.displayName = name;
-        toast.success("Sign up Successfully.");
-        const currentUser = {
-          email: userInfo.email,
-        };
+        setUser(user);
+
         fetch(
-          " https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt",
+          " https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt",
           {
             method: "POST",
             headers: {
@@ -49,18 +52,18 @@ const SignUp = () => {
         )
           .then((res) => res.json())
           .then((data) => {
+            // local storage is the easiest but not the best place to store jwt token
             localStorage.setItem("token", data.token);
+            e.target.reset();
             navigate(from, { replace: true });
           });
-        e.target.reset();
       })
-      .catch((error) => {
-        console.error(error);
-        setErrors({ ...errors, general: error.message });
+      .catch((err) => {
+        console.log(err);
+        setErrors({ ...errors, general: err.message });
       });
   };
 
-  
   const handleEmailChange = (e) => {
     const email = e.target.value;
 
@@ -94,8 +97,60 @@ const SignUp = () => {
     }
   };
 
-  
-  document.title = "Sign Up";
+  let googleProvider = new GoogleAuthProvider();
+  let handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setLoading(true);
+        console.log(user);
+        toast.success("Login successfull!");
+
+        const currentUser = {
+          email: user.email,
+        };
+        console.log(currentUser);
+        fetch(
+          " https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+          });
+        // ...
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("login failled");
+      });
+  };
+
+  let resetPass = () => {
+    setLoading(true);
+    forgetPassword(userInfo.email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+        toast.success("Check your Mail. Reset password mail has been sent");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setErrors({ ...errors, general: errorMessage });
+        // ..
+      });
+  };
+
+  document.title = "Login form";
+
   return (
     <div className='relative'>
       <img
@@ -118,41 +173,26 @@ const SignUp = () => {
                 quae.
               </p>
             </div>
-            <div className='w-full max-w-xl xl:px-8 xl:w-5/12' onSubmit={handleLogin}>
+            <div className='w-full max-w-xl xl:px-8 xl:w-5/12'>
               <div className='bg-gray-900 text-white rounded shadow-2xl p-7 sm:p-10'>
                 <h3 className='mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl uppercase'>
-                  Sign up
+                  Login
                 </h3>
-                <form>
-                  <div className='mb-1 sm:mb-2'>
-                    <label
-                      htmlFor='firstName'
-                      className='inline-block mb-1 font-medium text-white'>
-                      Full name
-                    </label>
-                    <input
-                      required
-                      type='text'
-                      className='flex-grow w-full h-12 px-4 mb-2 transition duration-200 border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline'
-                      name='name'
-                      id='firstName'
-                      placeholder='Enter your name'
-                    />
-                  </div>
+                <form onSubmit={handleSubmit}>
                   <div className='mb-1 sm:mb-2'>
                     <label
                       htmlFor='email'
-                      className='inline-block mb-1 font-medium text-white'>
+                      className='inline-block mb-1 font-medium'>
                       E-mail
                     </label>
                     <input
                       placeholder='john.doe@example.org'
                       required
                       type='text'
+                      onChange={handleEmailChange}
                       className='flex-grow w-full h-12 px-4 mb-2 transition duration-200  border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline'
                       id='email'
                       name='email'
-                      onChange={handleEmailChange}
                     />
                     {errors.email && (
                       <p className='text-red-600'>{errors.email}</p>
@@ -160,18 +200,18 @@ const SignUp = () => {
                   </div>
                   <div className='mb-1 sm:mb-2'>
                     <label
-                      htmlFor='pass'
-                      className='inline-block mb-1 font-medium text-white'>
+                      htmlFor='email'
+                      className='inline-block mb-1 font-medium'>
                       Password
                     </label>
                     <input
-                      placeholder='Password'
-                      required
                       type='password'
-                      className='flex-grow w-full h-12 px-4 mb-2 transition duration-200  border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline'
-                      id='pass'
                       name='password'
+                      placeholder='password'
+                      required
                       onChange={handlePasswordChange}
+                      className='flex-grow w-full h-12 px-4 mb-2 transition duration-200  border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline'
+                      id='email'
                     />
                     {errors.password && (
                       <p className='text-red-600'>{errors.password}</p>
@@ -180,18 +220,22 @@ const SignUp = () => {
                   <div className='mt-4 mb-2 sm:mb-4'>
                     <button
                       type='submit'
-                      className='uppercase inline-flex items-center justify-center w-full h-12 px-6 font-medium bg-slate-800 tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'>
-                      Sign Up
+                      className='bg-slate-800 inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide uppercase text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'>
+                      Login
                     </button>
                   </div>
                 </form>
-                <small>
-                  {" "}
-                  <Link to='/login'>
-                    Already have a account!!{" "}
-                    <span className='font-bold text-[#085594]'>Login</span>
-                  </Link>
-                </small>
+                <p className='text-center'>
+                  New here{" "}
+                  <Link className='text-[#003566] font-bold' to='/signup'>
+                    Sign Up
+                  </Link>{" "}
+                </p>
+                <button
+                  className='text-center mt-4 justify-center mx-auto w-52 h-12 p-[0.7rem] flex duration-300 transform border border-gray-400  hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110'
+                  onClick={handleGoogleLogin}>
+                  <FcGoogle className='text-2xl mr-2'></FcGoogle>Google Login
+                </button>
               </div>
             </div>
           </div>
@@ -201,4 +245,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;
