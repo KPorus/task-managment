@@ -30,6 +30,7 @@ const AddTask = () => {
               let tasks = {
                 email,
                 details,
+                taskComplete: false,
                 photo: imgData.data.url,
               };
     

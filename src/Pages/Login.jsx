@@ -41,7 +41,7 @@ const Login = () => {
         setUser(user);
 
         fetch(
-          " https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt",
+          " http://localhost:5000/jwt",
           {
             method: "POST",
             headers: {

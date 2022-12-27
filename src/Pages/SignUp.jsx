@@ -38,7 +38,7 @@ const SignUp = () => {
           email: userInfo.email,
         };
         fetch(
-          " https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt",
+          " http://localhost:5000/jwt",
           {
             method: "POST",
             headers: {
