@@ -119,8 +119,8 @@ const SignUp = () => {
               </p>
             </div>
             <div className='w-full max-w-xl xl:px-8 xl:w-5/12' onSubmit={handleLogin}>
-              <div className='bg-gray-900 text-white rounded shadow-2xl p-7 sm:p-10'>
-                <h3 className='mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl uppercase'>
+              <div className='bg-gray-900  rounded shadow-2xl p-7 sm:p-10'>
+                <h3 className=' text-white mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl uppercase'>
                   Sign up
                 </h3>
                 <form>
@@ -185,7 +185,7 @@ const SignUp = () => {
                     </button>
                   </div>
                 </form>
-                <small>
+                <small className="text-white">
                   {" "}
                   <Link to='/login'>
                     Already have a account!!{" "}

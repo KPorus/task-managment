@@ -174,15 +174,15 @@ const Login = () => {
               </p>
             </div>
             <div className='w-full max-w-xl xl:px-8 xl:w-5/12'>
-              <div className='bg-gray-900 text-white rounded shadow-2xl p-7 sm:p-10'>
-                <h3 className='mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl uppercase'>
+              <div className='bg-gray-900 rounded shadow-2xl p-7 sm:p-10'>
+                <h3 className='text-white mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl uppercase'>
                   Login
                 </h3>
                 <form onSubmit={handleSubmit}>
                   <div className='mb-1 sm:mb-2'>
                     <label
                       htmlFor='email'
-                      className='inline-block mb-1 font-medium'>
+                      className='inline-block mb-1 font-medium text-white'>
                       E-mail
                     </label>
                     <input
@@ -201,7 +201,7 @@ const Login = () => {
                   <div className='mb-1 sm:mb-2'>
                     <label
                       htmlFor='email'
-                      className='inline-block mb-1 font-medium'>
+                      className='inline-block mb-1 font-medium text-white'>
                       Password
                     </label>
                     <input
@@ -225,14 +225,15 @@ const Login = () => {
                     </button>
                   </div>
                 </form>
-                <p className='text-center'>
+                <small><button  onClick={resetPass} className="text-white duration-300 transform hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110">Forget password</button></small>
+                <p className='text-center text-white'>
                   New here{" "}
                   <Link className='text-[#003566] font-bold' to='/signup'>
                     Sign Up
                   </Link>{" "}
                 </p>
                 <button
-                  className='text-center mt-4 justify-center mx-auto w-52 h-12 p-[0.7rem] flex duration-300 transform border border-gray-400  hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110'
+                  className='text-white text-center mt-4 justify-center mx-auto w-52 h-12 p-[0.7rem] flex duration-300 transform border border-gray-400  hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110'
                   onClick={handleGoogleLogin}>
                   <FcGoogle className='text-2xl mr-2'></FcGoogle>Google Login
                 </button>
