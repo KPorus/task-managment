@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import logo from "../asset/tasks.png"
+import logo from "../asset/tasks.png";
+import { AuthContext } from "./context/AuthProvider/AuthProvider";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, usersignOut } = useContext(AuthContext);
+  let handleSignOut = () => {
+    usersignOut()
+      .then(() => {
+        //signout
+        toast.success("Logout successfull!");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div className='bg-gray-900'>
       <div className='px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8'>
@@ -13,9 +26,9 @@ const Nav = () => {
             aria-label='Company'
             title='Company'
             className='inline-flex items-center'>
-            <img src={logo} alt="logo" className="w-8 text-teal-accent-400" />
+            <img src={logo} alt='logo' className='w-8 text-teal-accent-400' />
             <span className='ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase'>
-            Task Manager
+              Task Manager
             </span>
           </Link>
           <ul className='items-center hidden space-x-8 lg:flex'>
@@ -47,13 +60,19 @@ const Nav = () => {
               </Link>
             </li>
             <li>
-              <Link
-                to='/signUp'
-                className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
-                aria-label='Sign up'
-                title='Sign up'>
-                Sign up
-              </Link>
+              {user ? (
+                <button className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none' onClick={handleSignOut}>
+                Log Out
+              </button>
+              ) : (
+                <Link
+                  to='/signUp'
+                  className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
+                  aria-label='Sign up'
+                  title='Sign up'>
+                  Sign up
+                </Link>
+              )}
             </li>
           </ul>
           <div className='lg:hidden'>
@@ -87,9 +106,13 @@ const Nav = () => {
                         aria-label='Company'
                         title='Company'
                         className='inline-flex items-center'>
-                        <img src={logo} alt="logo" className="w-8 text-teal-accent-400" />
+                        <img
+                          src={logo}
+                          alt='logo'
+                          className='w-8 text-teal-accent-400'
+                        />
                         <span className='ml-2 text-xl font-bold tracking-wide text-gray-900 uppercase'>
-                        Task Manager
+                          Task Manager
                         </span>
                       </Link>
                     </div>
