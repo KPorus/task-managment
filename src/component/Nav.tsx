@@ -13,56 +13,47 @@ const Nav = () => {
             aria-label='Company'
             title='Company'
             className='inline-flex items-center'>
-            <img src={logo} alt="logo"  className="w-8 text-teal-accent-400" />
+            <img src={logo} alt="logo" className="w-8 text-teal-accent-400" />
             <span className='ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase'>
               Company
             </span>
           </Link>
-          <ul className='flex items-center hidden space-x-8 lg:flex'>
+          <ul className='items-center hidden space-x-8 lg:flex'>
             <li>
-              <a
-                href='/'
+              <Link
+                to='/addtask'
                 aria-label='Our product'
                 title='Our product'
                 className='font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400'>
-                Product
-              </a>
+                Add task
+              </Link>
             </li>
             <li>
-              <a
-                href='/'
+              <Link
+                to='/taskList'
                 aria-label='Our product'
                 title='Our product'
                 className='font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400'>
-                Features
-              </a>
+                Your Task
+              </Link>
             </li>
             <li>
-              <a
-                href='/'
+              <Link
+                to='/completeTask'
                 aria-label='Product pricing'
                 title='Product pricing'
                 className='font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400'>
-                Pricing
-              </a>
+                Completed Task
+              </Link>
             </li>
             <li>
-              <a
-                href='/'
-                aria-label='About us'
-                title='About us'
-                className='font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400'>
-                About us
-              </a>
-            </li>
-            <li>
-              <a
-                href='/'
+              <Link
+                to='/signUp'
                 className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
                 aria-label='Sign up'
                 title='Sign up'>
                 Sign up
-              </a>
+              </Link>
             </li>
           </ul>
           <div className='lg:hidden'>
@@ -87,7 +78,7 @@ const Nav = () => {
               </svg>
             </button>
             {isMenuOpen && (
-              <div className='absolute top-0 left-0 w-full'>
+              <div className='absolute top-0 left-0 w-full z-10'>
                 <div className='p-5 bg-white border rounded shadow-sm'>
                   <div className='flex items-center justify-between mb-4'>
                     <div>
@@ -133,49 +124,40 @@ const Nav = () => {
                   <nav>
                     <ul className='space-y-4'>
                       <li>
-                        <a
-                          href='/'
+                        <Link
+                          to='/addtask'
                           aria-label='Our product'
                           title='Our product'
-                          className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
-                          Product
-                        </a>
+                          className='font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400'>
+                          Add task
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href='/'
+                        <Link
+                          to='/taskList'
                           aria-label='Our product'
                           title='Our product'
-                          className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
-                          Features
-                        </a>
+                          className='font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400'>
+                          Your Task
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href='/'
+                        <Link
+                          to='/completeTask'
                           aria-label='Product pricing'
                           title='Product pricing'
-                          className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
-                          Pricing
-                        </a>
+                          className='font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400'>
+                          Completed Task
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href='/'
-                          aria-label='About us'
-                          title='About us'
-                          className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
-                          About us
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href='/'
-                          className='inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
+                        <Link
+                          to='/signUp'
+                          className='inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-gray-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
                           aria-label='Sign up'
                           title='Sign up'>
                           Sign up
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </nav>
