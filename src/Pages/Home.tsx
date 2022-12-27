@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Typewriter } from 'react-simple-typewriter';
 
 const Home = () => {
+    document.title = "Manage your Task";
     return (
         <div className="relative bg-deep-purple-accent-400 flex lg:mt-28">
             <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
