@@ -51,6 +51,10 @@ const AddTask = () => {
                   event.target.reset();
                 });
             }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error("task add failled");
           });
       };
     document.title = "Add tasks";
