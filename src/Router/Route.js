@@ -5,6 +5,7 @@ import AddTask from "../Pages/AddTask";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import SignUp from "../Pages/SignUp"
+import UserTasks from "../Pages/UserTasks";
 import PrivateRoute from "./PrivateRoute";
 
 
@@ -29,6 +30,10 @@ export const route = createBrowserRouter([
             {
                 path:"/addtask",
                 element:<PrivateRoute><AddTask/></PrivateRoute>,
+            },
+            {
+                path:"/taskList",
+                element:<PrivateRoute><UserTasks/></PrivateRoute>,
             },
         ]
     }
