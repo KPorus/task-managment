@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 const userTask = ({ items, refetch }) => {
   let { _id, details, email, taskComplete } = items;
   let handleDelete = (_id) => {
-    fetch(`http://localhost:5000/alltasks/${_id}`, {
+    fetch(`https://task-managment-server.vercel.app/alltasks/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("token")}`,
@@ -20,7 +20,7 @@ const userTask = ({ items, refetch }) => {
   };
 
   const handleStatusUpdate = (_id) => {
-    fetch(`http://localhost:5000/alltasks/${_id}`, {
+    fetch(`https://task-managment-server.vercel.app/alltasks/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

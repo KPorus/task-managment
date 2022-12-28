@@ -14,7 +14,7 @@ const UserTasks = () => {
   } = useQuery({
     queryKey: ["userPuduct"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/alltasks/${user?.email}`, {
+      const res = await fetch(`https://task-managment-server.vercel.app/alltasks/${user?.email}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",

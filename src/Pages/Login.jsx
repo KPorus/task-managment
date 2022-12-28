@@ -41,7 +41,7 @@ const Login = () => {
         setUser(user);
 
         fetch(
-          " http://localhost:5000/jwt",
+          " https://task-managment-server.vercel.app/jwt",
           {
             method: "POST",
             headers: {

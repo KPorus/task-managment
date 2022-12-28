@@ -15,7 +15,7 @@ const CompleteTask = () => {
     queryKey: ["userPuduct"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/completetasks/${user?.email}`,
+        `https://task-managment-server.vercel.app/completetasks/${user?.email}`,
         {
           method: "GET",
           headers: {

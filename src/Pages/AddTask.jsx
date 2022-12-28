@@ -36,7 +36,7 @@ const AddTask = () => {
     
               console.log(tasks);
               fetch(
-                `http://localhost:5000/alltasks`,
+                `https://task-managment-server.vercel.app/alltasks`,
                 {
                   method: "POST",
                   headers: {
