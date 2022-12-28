@@ -15,7 +15,14 @@ const CompleteTask = () => {
     queryKey: ["userPuduct"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/completetasks/${user?.email}`
+        `http://localhost:5000/completetasks/${user?.email}`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            authorization: `bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       const data = await res.json();
       return data;
@@ -28,7 +35,7 @@ const CompleteTask = () => {
   return (
     <div>
       <h1 className='text-center text-white text-xl font-medium my-4'>
-        All the tasks
+        Complete tasks
       </h1>
       <div className='overflow-x-auto m-10 text-slate-100 bg-slate-800'>
         <table className='table w-full'>

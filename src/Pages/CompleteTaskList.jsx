@@ -21,6 +21,22 @@ const CompleteTaskList = ({ items, refetch }) => {
         }
       });
   };
+
+  let handleDelete = (_id) => {
+    fetch(`http://localhost:5000/completetasks/${_id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success(`deleted successfully`);
+        }
+      });
+  };
   return (
     <tr>
       {taskComplete && (
@@ -32,6 +48,13 @@ const CompleteTaskList = ({ items, refetch }) => {
               onClick={() => handleStatusUpdate(_id)}
               className=' btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
               <span>Not Complete</span>
+            </span>
+          </td>
+          <td className='p-3 text-right'>
+            <span
+              onClick={() => handleDelete(_id)}
+              className=' btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
+              <span>Delete</span>
             </span>
           </td>
         </>

@@ -1,4 +1,4 @@
-import React,{useContext}from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../component/Loading";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import UserTask from "./UserTask";
 
 const UserTasks = () => {
-    const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const {
     isLoading,
     refetch,
@@ -14,9 +14,13 @@ const UserTasks = () => {
   } = useQuery({
     queryKey: ["userPuduct"],
     queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/alltasks/${user?.email}`
-      );
+      const res = await fetch(`http://localhost:5000/alltasks/${user?.email}`, {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
@@ -44,8 +48,7 @@ const UserTasks = () => {
               <UserTask
                 key={items._id}
                 refetch={refetch}
-                items={items}
-               ></UserTask>
+                items={items}></UserTask>
             ))}
           </tbody>
         </table>
@@ -58,7 +61,6 @@ const UserTasks = () => {
         </Link>
       </div>
     </div>
-      
   );
 };
 
