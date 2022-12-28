@@ -31,35 +31,29 @@ const UserTasks = () => {
   }
   console.log(tasks);
   return (
-    <div>
+    <div className='container mx-auto'>
       <h1 className='text-center text-white text-xl font-medium my-4'>
         All the tasks
       </h1>
-      <div className='overflow-x-auto m-10 text-slate-100 bg-slate-800'>
-        <table className='table w-full'>
-          <thead>
-            <tr>
-              <th>Email</th>
-              <th>Tasks</th>
-            </tr>
-          </thead>
-          <tbody>
+      <section className='text-gray-600 body-font'>
+        <div >
+          <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
             {tasks.map((items) => (
               <UserTask
                 key={items._id}
                 refetch={refetch}
                 items={items}></UserTask>
             ))}
-          </tbody>
-        </table>
-      </div>
-      <div className='flex justify-center m-10'>
-        <Link
-          to='/'
-          className='px-8 py-3 font-semibold rounded bg-[#003566] text-white'>
-          Back to Home Page
-        </Link>
-      </div>
+          </div>
+        </div>
+          <div className='flex justify-center m-8'>
+            <Link
+              to='/'
+              className='px-8 py-3 font-semibold rounded bg-[#003566] text-white'>
+              Back to Home Page
+            </Link>
+          </div>
+      </section>
     </div>
   );
 };

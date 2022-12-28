@@ -38,33 +38,39 @@ const userTask = ({ items, refetch }) => {
       });
   };
   return (
-    <tr>
+    <>
       {taskComplete === false && (
         <>
-          <td className='text-center'>{email}</td>
-          <td className='text-center'>{details}</td>
-          <td className='p-3 text-right'>
-            <span className=' btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
-              <span>Edit</span>
-            </span>
-          </td>
-          <td className='p-3 text-right'>
-            <span
-              onClick={() => handleStatusUpdate(_id)}
-              className=' btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
-              <span>Complete</span>
-            </span>
-          </td>
-          <td className='p-3 text-right'>
-            <span
-              onClick={() => handleDelete(_id)}
-              className=' btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
-              <span>Delete</span>
-            </span>
-          </td>
+          <div className='p-2'>
+            <div className='border-2 rounded-lg border-gray-200 border-opacity-50 p-8 text-center'>
+              <div className='sm:flex-grow'>
+                <h2 className='text-gray-100 text-[0.8rem] sm:text-xl font-medium mb-3'>
+                  {email}
+                </h2>
+                <h2 className='text-gray-100  font-medium mb-3'>
+                  {details}
+                </h2>
+                <div className="flex sm:flex-row flex-col sm:justify-center items-center">
+                  <span className=' my-1 sm:my-0 w-1/2 text-center sm:w-[20%] btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
+                    <span>Edit</span>
+                  </span>
+                  <span
+                    onClick={() => handleStatusUpdate(_id)}
+                    className='my-1 sm:my-0 text-center w-7/12 sm:mx-2 sm:w-[35%] btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
+                    <span>Complete</span>
+                  </span>
+                  <span
+                    onClick={() => handleDelete(_id)}
+                    className='my-1 sm:my-0 w-1/2 text-center sm:w-[30%] btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
+                    <span>Delete</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </>
       )}
-    </tr>
+    </>
   );
 };
 
