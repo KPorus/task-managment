@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-hot-toast";
 
-const userTask = ({ items, refetch }) => {
+const userTask = ({ items, refetch,setedit }) => {
   let { _id, details, email, taskComplete } = items;
   let handleDelete = (_id) => {
     fetch(`https://task-managment-server.vercel.app/alltasks/${_id}`, {
@@ -47,13 +47,14 @@ const userTask = ({ items, refetch }) => {
                 <h2 className='text-gray-100 text-[0.8rem] sm:text-xl font-medium mb-3'>
                   {email}
                 </h2>
-                <h2 className='text-gray-100  font-medium mb-3'>
-                  {details}
-                </h2>
-                <div className="flex sm:flex-row flex-col sm:justify-center items-center">
-                  <span className=' my-1 sm:my-0 w-1/2 text-center sm:w-[20%] btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
+                <h2 className='text-gray-100  font-medium mb-3'>{details}</h2>
+                <div className='flex sm:flex-row flex-col sm:justify-center items-center'>
+                  <label
+                    onClick={() => setedit(items)}
+                    htmlFor="book"
+                    className=' my-1 sm:my-0 w-1/2 text-center sm:w-[20%] btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
                     <span>Edit</span>
-                  </span>
+                  </label>
                   <span
                     onClick={() => handleStatusUpdate(_id)}
                     className='my-1 sm:my-0 text-center w-7/12 sm:mx-2 sm:w-[35%] btn px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 cursor-pointer'>
