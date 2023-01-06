@@ -2,10 +2,12 @@ import React, { createContext } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from "../../../firebase/firebase.config"
 import { useState, useEffect } from 'react';
+import Cookies from 'universal-cookie/cjs/Cookies';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
 const AuthProvider = ({children}) => {
+    const cookies = new Cookies();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -17,7 +19,7 @@ const AuthProvider = ({children}) => {
 
     let usersignOut = ()=>
     {
-        localStorage.removeItem('photo-token');
+        cookies.remove("token");
         return signOut(auth)
     }
 
