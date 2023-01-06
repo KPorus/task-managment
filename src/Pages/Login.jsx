@@ -55,7 +55,9 @@ const Login = () => {
           .then((res) => res.json())
           .then((data) => {
             // local storage is the easiest but not the best place to store jwt token
-            cookies.set("token", data.token, { path: '/' });
+            cookies.set("token", data.token, { path: '/' },{
+              expires: new Date(data.token.exp + 1000) 
+            });
             console.log(cookies.get("token"));
             e.target.reset();
             navigate(from, { replace: true });
@@ -125,7 +127,11 @@ const Login = () => {
         )
           .then((res) => res.json())
           .then((data) => {
-            cookies.set("token", data.token, { path: "/" });
+            cookies.set("token", data.token, { path: "/" },
+            {
+              expires: new Date(data.token.exp + 1000) 
+            }
+            );
             console.log(cookies.get("token"));
             navigate(from, { replace: true });
           });

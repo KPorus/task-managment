@@ -19,7 +19,6 @@ const AuthProvider = ({children}) => {
 
     let usersignOut = ()=>
     {
-        cookies.remove("token");
         return signOut(auth)
     }
 
