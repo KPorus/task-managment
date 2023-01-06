@@ -2,8 +2,10 @@ import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import "../App.css";
+import Cookies from "universal-cookie/cjs/Cookies";
 
 const Modal = ({ edit, setedit, refetch }) => {
+      const cookies = new Cookies();
   const { user } = useContext(AuthContext);
   
   const handleBooking = (event) => {
@@ -17,7 +19,7 @@ const Modal = ({ edit, setedit, refetch }) => {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("token")}`,
+        authorization: `bearer ${cookies.get("token")}`,
       },
       body: JSON.stringify({ details: details }),
     })
@@ -27,7 +29,7 @@ const Modal = ({ edit, setedit, refetch }) => {
         if (data.modifiedCount > 0) {
           refetch();
           toast.success("Task updated");
-          setedit(null)
+          setedit(null);
         }
       });
   };

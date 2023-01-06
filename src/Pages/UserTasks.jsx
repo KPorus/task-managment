@@ -5,8 +5,10 @@ import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import UserTask from "./UserTask";
 import Modal from "../component/Modal";
+import Cookies from "universal-cookie/cjs/Cookies";
 
 const UserTasks = () => {
+      const cookies = new Cookies();
   const [edit, setedit] = useState(null);
   const { user } = useContext(AuthContext);
   const {
@@ -22,7 +24,7 @@ const UserTasks = () => {
           method: "GET",
           headers: {
             "content-type": "application/json",
-            authorization: `bearer ${localStorage.getItem("token")}`,
+            authorization: `bearer ${cookies.get("token")}`,
           },
         }
       );

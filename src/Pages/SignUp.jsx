@@ -3,8 +3,10 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie/cjs/Cookies";
 
 const SignUp = () => {
+  const cookies = new Cookies();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -49,7 +51,7 @@ const SignUp = () => {
         )
           .then((res) => res.json())
           .then((data) => {
-            localStorage.setItem("token", data.token);
+            cookies.set("token", data.token, { path: "/" });
             navigate(from, { replace: true });
           });
         e.target.reset();

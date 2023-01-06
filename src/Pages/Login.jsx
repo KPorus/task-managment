@@ -4,8 +4,10 @@ import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 import { toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider } from "firebase/auth";
+import Cookies from "universal-cookie";
 
 const Login = () => {
+  const cookies = new Cookies();
   const { login, googleLogin, setLoading, setUser, forgetPassword } =
     useContext(AuthContext);
   const location = useLocation();
@@ -53,7 +55,8 @@ const Login = () => {
           .then((res) => res.json())
           .then((data) => {
             // local storage is the easiest but not the best place to store jwt token
-            localStorage.setItem("token", data.token);
+            cookies.set("token", data.token, { path: '/' });
+            console.log(cookies.get("token"));
             e.target.reset();
             navigate(from, { replace: true });
           });
@@ -122,8 +125,8 @@ const Login = () => {
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
-            localStorage.setItem("token", data.token);
+            cookies.set("token", data.token, { path: "/" });
+            console.log(cookies.get("token"));
             navigate(from, { replace: true });
           });
         // ...

@@ -4,8 +4,10 @@ import Loading from "../component/Loading";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import CompleteTaskList from "./CompleteTaskList";
+import Cookies from "universal-cookie/cjs/Cookies";
 
 const CompleteTask = () => {
+    const cookies = new Cookies();
   const { user } = useContext(AuthContext);
   const {
     isLoading,
@@ -20,7 +22,7 @@ const CompleteTask = () => {
           method: "GET",
           headers: {
             "content-type": "application/json",
-            authorization: `bearer ${localStorage.getItem("token")}`,
+            authorization: `bearer ${cookies.get("token")}`,
           },
         }
       );

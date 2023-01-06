@@ -1,13 +1,15 @@
 import React from "react";
 import { toast } from "react-hot-toast";
+import Cookies from "universal-cookie/cjs/Cookies";
 
 const userTask = ({ items, refetch,setedit }) => {
+  const cookies = new Cookies();
   let { _id, details, email, taskComplete } = items;
   let handleDelete = (_id) => {
     fetch(`https://task-managment-server.vercel.app/alltasks/${_id}`, {
       method: "DELETE",
       headers: {
-        authorization: `bearer ${localStorage.getItem("token")}`,
+        authorization: `bearer ${cookies.get("token")}`,
       },
     })
       .then((res) => res.json())
@@ -24,7 +26,7 @@ const userTask = ({ items, refetch,setedit }) => {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("token")}`,
+        authorization: `bearer ${cookies.get("token")}`,
       },
       body: JSON.stringify({ taskComplete: true }),
     })

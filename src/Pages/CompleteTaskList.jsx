@@ -1,14 +1,16 @@
 import React from "react";
 import { toast } from "react-hot-toast";
+import Cookies from "universal-cookie/cjs/Cookies";
 
 const CompleteTaskList = ({ items, refetch }) => {
+    const cookies = new Cookies();
   let { _id, details, email, taskComplete } = items;
   const handleStatusUpdate = (_id) => {
     fetch(`https://task-managment-server.vercel.app/completetasks/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("token")}`,
+        authorization: `bearer ${cookies.get("token")}`,
       },
       body: JSON.stringify({ taskComplete: false }),
     })
@@ -26,7 +28,7 @@ const CompleteTaskList = ({ items, refetch }) => {
     fetch(`https://task-managment-server.vercel.app/completetasks/${_id}`, {
       method: "DELETE",
       headers: {
-        authorization: `bearer ${localStorage.getItem("token")}`,
+        authorization: `bearer ${cookies.get("token")}`,
       },
     })
       .then((res) => res.json())
