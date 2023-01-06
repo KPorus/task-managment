@@ -32,7 +32,7 @@ const Home = () => {
                         Plan, organize, and collaborate on any project with powerful task management that can be customized for every need.
                     </p>
                     <Link
-                        to="/signUp"
+                        to="/addtask"
                         aria-label="Scroll down"
                         className="flex items-center justify-center w-32 h-10 mx-auto text-white duration-300 transform border border-gray-400  hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110"
                     >
