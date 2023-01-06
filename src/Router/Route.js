@@ -11,35 +11,49 @@ import PrivateRoute from "./PrivateRoute";
 
 
 export const route = createBrowserRouter([
-    {
-        path:"/",
-        errorElement:<ErrorPage></ErrorPage>,
-        element:<Main></Main>,
-        children:[
-            {
-                path:"/",
-                element:<Home></Home>,
-            },
-            {
-                path:"/signUp",
-                element:<SignUp></SignUp>,
-            },
-            {
-                path:"/login",
-                element:<Login/>,
-            },
-            {
-                path:"/addtask",
-                element:<PrivateRoute><AddTask/></PrivateRoute>,
-            },
-            {
-                path:"/taskList",
-                element:<PrivateRoute><UserTasks/></PrivateRoute>,
-            },
-            {
-                path:"/completeTask",
-                element:<PrivateRoute><CompleteTask/></PrivateRoute>,
-            },
-        ]
-    }
-])
+  {
+    path: "/",
+    errorElement: <ErrorPage></ErrorPage>,
+    element: (
+        <Main></Main>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <PrivateRoute><Home></Home></PrivateRoute>,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp></SignUp>,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/addtask",
+        element: (
+          <PrivateRoute>
+            <AddTask />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/taskList",
+        element: (
+          <PrivateRoute>
+            <UserTasks />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/completeTask",
+        element: (
+          <PrivateRoute>
+            <CompleteTask />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);

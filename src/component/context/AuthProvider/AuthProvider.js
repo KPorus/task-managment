@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from "../../../firebase/firebase.config"
 import { useState, useEffect } from 'react';
-import Cookies from 'universal-cookie/cjs/Cookies';
+import Cookies from 'universal-cookie';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
